@@ -1,228 +1,323 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
-		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<style>
-			[v-cloak] {
-				display: none;
-			}
-			.go_no1{
-				overflow: hidden;
-			}
-			.go_no1 span{
-				display: inline-block;
-				width: 20%;
-				text-align: center;
-				float: left;
-				line-height: 50px;
-			}
-			
-		</style>
-	</head>
+    <title>Slidefolio</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Add custom CSS here -->
+    <link href="css/slidefolio.css" rel="stylesheet">
+	<!-- Font Awesome -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+<body>
 
-	<body>
-		<div id="box" class="container" v-cloak="">
-			<div style="height:60px;line-height: 60px;border-bottom: 1px solid #ccc;text-align: right;">
-				<button class="btn btn-success" data-toggle="modal" data-target="#myModal">购物车</button>
-			</div>
-			<div style="overflow: hidden;line-height: 50px;">
-				<div style="float: left; width: 200px;margin: 5px;" v-for="i in arr">
-					<div style="width: 200px;height: 200px;background: #ccc;">
+    <!-- Header Area -->
+    <div id="top" class="header">
+      <div class="vert-text">
+	  <img class="img-rounded" alt="Company Logo" src="./img/logo.jpg"/>
+        <h2><em>于庆庆</em></h2>
+		 <ul class="list-inline">
+              <li><i class="fa fa-facebook fa-3x"></i></li>
+              <li><i class="fa fa-twitter fa-3x"></i></li>
+              <li><i class="fa fa-google-plus fa-3x"></i></li>
+			  <li><i class="fa fa-linkedin fa-3x"></i></li>
+			   <li><i class="fa fa-pinterest fa-3x"></i></li>
+            </ul>	
+			<br>
+			<a href="#about" class="btn btn-top">Learn More</a>
+      </div>
+    </div>
+    <!-- /Header Area -->
+	  <div id="nav">
+    <!-- Navigation -->
+    <nav class="navbar navbar-new" role="navigation">
+   <div class="container">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mobilemenu">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+	<a href="#" class="navbar-brand">Slidefolio</a>
+  </div>
+  <div class="collapse navbar-collapse" id="mobilemenu">
 
-					</div>
-					<div>
-						商品：{{i.n}}
-					</div>
-					<div>
-						价格：{{i.j}} <button style="float: right;" class="btn" @click="insert_go(i)">  + </button>
-					</div>
-				</div>
-			</div>
-			<!--购物车-->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel">购物车</h4>
-						</div>
-						<div class="modal-body">
-							<div v-if="go_arr.length">
-									<div class="go_no1">
-										<span>商品</span>
-										<span>单价</span>
-										<span>数量</span>
-										<span>小计</span>
-										<span>操作</span>
-									</div>
-								<div style="max-height: 400px;overflow-y: auto;">
-									<div v-for="i in type_arr">
-									<h4>{{i}}</h4>
-									<div class="go_no1" v-for="a in go_arr" v-if="i ==a.t">
-										<span>{{a.n}}</span>
-										<span>{{a.j}}</span>
-										<span>
-											<button class="btn" @click="no1(a.uid)"> - </button>
-											{{a.s}}
-											<button class="btn" @click="no2(a.uid)"> + </button>
-										</span>
-										<span>{{a.j*a.s}}</span>
-										<span><button class="glyphicon glyphicon-remove btn btn-danger" @click="delete_s(a.uid)"></button></span>
-									</div>
-								</div>
-								</div>
-								<div style="border-top: 1px solid #ccc; line-height: 40px;text-align: right;">
-									总价：{{z_arr}}
-								</div>
-							</div>
-							<div v-else>
-								购物暂时没有数据
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">支付</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!---->
+	  <ul class="nav navbar-nav navbar-right text-center">
+	    <li><a href="#top"><i class="service-icon fa fa-home"></i>&nbsp;Home</a></li>
+        <li><a href="#about"><i class="service-icon fa fa-info"></i>&nbsp;About</a></li>
+        <li><a href="#services"><i class="service-icon fa fa-laptop"></i>&nbsp;Services</a></li>
+        <li><a href="#portfolio"><i class="service-icon fa fa-camera"></i>&nbsp;Portfolio</a></li>
+        <li><a href="#contact"><i class="service-icon fa fa-envelope"></i>&nbsp;Contact</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+  </div>
+</nav>
+    <!-- /Navigation -->
+</div>	
+    <!-- About -->
+    <div id="about" class="about_us">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 text-center">
+            <h2>About Us</h2>
+            <p class="lead">Lorem ipsum dolor sit amet, ei essent delenit sit, adipisci salutatus has eu. Quis tamquam cu nam. Sed esse deleniti et, ex rebum quaestio his. Audiam deseruisse sed cu, vix ex possim causae omittantur.</p>
+          </div>
+        </div>
+	  </div>
+    </div>
+    <!-- /About -->
+    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >手机网站模板</a></div>
+    <!-- Services -->
+    <div id="services" class="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4 text-center">
+            <h2>Our Services</h2>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <div class="service-item">
+              <i class="service-icon fa fa-camera-retro fa-3x"></i>
+              <h3>Portrait</h3>
+              <p>Ad has dicat ridens consetetur, eos eu option persius. Mollis cotidieque conclusionemque per id, ne nam alienum liberavisse. </p>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="service-item">
+			<i class="service-icon fa fa-camera fa-3x"></i>
+              <h3>Black & white</h3>
+              <p>In mea similique vulputate, ea cum amet malorum dissentiunt. Qui deleniti aliquando cu, ullum soluta his an, id inani salutatus sit.</p>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="service-item">
+              <i class="service-icon fa fa-globe fa-3x"></i>
+              <h3>Web Design</h3>
+              <p>Ad has dicat ridens consetetur, eos eu option persius. Mollis cotidieque conclusionemque per id, ne nam alienum liberavisse.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Services -->
+
+    <!-- Portfolio -->
+    <div id="portfolio" class="portfolio">
+    <div class="container">
+    <div class="row push50">
+          <div class="col-md-4 col-md-offset-4 text-center">
+            <h2>作业</h2>
+			<h3>
+			<span class="filter label label-default" data-filter="all">ALL</span>
+	</h3>
+            <hr>
+          </div>
+        </div>
+		
+		<div class="row">
+		
+		<div class="gallery">
+		
+    		  <ul id="Grid" class="gcontainer">
+    		    <li class="col-md-4 col-sm-4 col-xs-12 mix bw portraits" data-cat="graphics">
+              <a href="显示隐藏/xy.html" class="mix-cover">
+                <img class="horizontal" src="img/portrait1-sm.jpg" alt="placeholder">
+      		      <span class="overlay"><span class="valign"></span><span class="title">作业-动画导航</span></span>
+              </a>                
+      		  </li>
+    		    <li class="col-md-4 col-sm-4 col-xs-12 mix portraits" data-cat="graphics">
+                <a href="动画/index.html" class="mix-cover">
+                  <img class="horizontal" src="img/portrait2.jpg" alt="placeholder">
+        		      <span class="overlay"><span class="valign"></span><span class="title">作业-动画轮播图</span></span>
+                </a>                
+      		  </li>
+			  <li class="col-md-4 col-sm-4 col-xs-12 mix nature" data-cat="nature">
+                <a  class="mix-cover">
+                  <img class="horizontal" src="img/nature1.jpg" alt="placeholder">
+        		      <span class="overlay"><span class="valign"></span><span class="title">Nature 1</span></span>
+        		    </a>
+      		  </li>
+      		  <li class="col-md-4 col-sm-4 col-xs-12 mix portraits" data-cat="portraits">
+                <a class="mix-cover">
+                  <img class="horizontal" src="img/portrait3.jpg" alt="placeholder">
+        		      <span class="overlay"><span class="valign"></span><span class="title">Portrait 3</span></span>
+        		    </a>
+      		  </li>
+			  <li class="col-md-4 col-sm-4 col-xs-12 mix portraits" data-cat="portraits">
+                <a class="mix-cover">
+                  <img class="horizontal" src="img/portrait5.jpg" alt="placeholder">
+        		       <span class="overlay"><span class="valign"></span><span class="title">Portrait 5</span></span>
+        		    </a>
+      		  </li>
+			  <li class="col-md-4 col-sm-4 col-xs-12 mix nature" data-cat="nature">
+                <a class="mix-cover">
+                  <img class="horizontal" src="img/nature.jpg" alt="placeholder">
+        		      <span class="overlay"><span class="valign"></span><span class="title">Nature</span></span>
+        		    </a>
+      		  </li>
+      		  <li class="col-md-4 col-sm-4 col-xs-12 mix portraits" data-cat="portrait">
+                <a class="mix-cover green">
+                  <img class="vertical" src="img/portrait4.jpg" alt="portrait 4">
+                  <span class="overlay"><span class="valign"></span><span class="title">Portrait 4</span></span>           
+        		    </a>
+      		  </li>
+			  <li class="col-md-4 col-sm-4 col-xs-12 mix bw nature all" data-cat="portrait">
+                <a class="mix-cover green">
+                  <img class="vertical" src="img/forest.jpg" alt="Forest">
+                   <span class="overlay"><span class="valign"></span><span class="title">Forest</span></span>                    
+        		    </a>
+      		  </li>
+			  <li class="col-md-4 col-sm-4 col-xs-12 mix bw nature all" data-cat="bw">
+                <a class="mix-cover green">
+                  <img class="vertical" src="img/bw1.jpg" alt="Black and White">
+                   <span class="overlay"><span class="valign"></span><span class="title">Black &amp; White</span></span>                  
+        		    </a>
+      		  </li>
+    		  </ul>   
+			  
+<!-- /Load Photo in Modal -->	
+		</div>	
+      </div>
 		</div>
-	</body>
-	<script src="vue.js"></script>
+      </div>
+    <!-- /Portfolio -->
+    <!-- Contact -->
+    <div id="contact">
+      <div class="container">
+        <div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center">
+            <h2>Contact Us</h2>
+			<hr>
+          </div>
+          <div class="col-md-5 col-md-offset-3">
+		  <!-- contact form starts -->
+            <form action="contact" id="contact-form" class="form-horizontal">
+			<fieldset>
+						    <div class="form-group">
+						      <label class="col-sm-4 control-label" for="name">Your Name</label>
+						      <div class="col-sm-8">
+						        <input type="text"  placeholder="Your Name" class="form-control" name="name" id="name">
+						      </div>
+						    </div>
+						    <div class="form-group">
+						      <label class="col-sm-4 control-label" for="email">Email Address</label>
+						      <div class="col-sm-8">
+						        <input type="text" placeholder="Enter Your Email Address" class="form-control" name="email" id="email">
+						      </div>
+						    </div>
+						    <div class="form-group">
+						      <label class="col-sm-4 control-label" for="subject">Subject</label>
+						      <div class="col-sm-8">
+						        <input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
+						      </div>
+						    </div>
+						    <div class="form-group">
+						      <label class="col-sm-4 control-label" for="message">Your Message</label>
+						      <div class="col-sm-8">
+						        <textarea placeholder="Please Type Your Message" class="form-control" name="message" id="message" rows="3"></textarea>
+						      </div>
+						    </div>
+	              <div class="col-sm-offset-4 col-sm-8">
+			            <button type="submit" class="btn btn-success">Submit</button>
+	    			      <button type="reset" class="btn btn-primary">Cancel</button>
+	        			</div>
+						</fieldset>
+						</form>
+				
+				<!-- contact form ends -->		
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Contact -->
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center">
+           <h2>Thank You</h2>
+           <em>Copyright &copy; Company 2013</em>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- /Footer -->
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+	<script src="js/jquery-scrolltofixed-min.js"></script>
+	<script src="js/jquery.vegas.js"></script>
+	<script src="js/jquery.mixitup.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/bootstrap.js"></script>
+	
+<!-- Slideshow Background  -->
 	<script>
-		new Vue({
-			el: "#box",
-			computed: {
-				z_arr(){
-					var num = 0
-					for(var i = 0; i < this.go_arr.length; i++) {
-						num+= this.go_arr[i].j*this.go_arr[i].s
-					}
-					return num
-				},
-				type_arr() {
-					var arr = []
-					for(var i = 0; i < this.go_arr.length; i++) {
-						if(arr.indexOf(this.go_arr[i].t) == -1) {
-							arr.push(this.go_arr[i].t)
-						}
-					}
-					return arr
-				}
-			},
-			methods: {
-				delete_s(uid){
-					for(var i = 0; i < this.go_arr.length; i++) {
-						if(this.go_arr[i].uid == uid) {
-							this.go_arr.splice(i,1)
-						}
-					}
-				},
-				no1(uid){
-					for(var i = 0; i < this.go_arr.length; i++) {
-						if(this.go_arr[i].uid == uid) {
-							var num = this.go_arr[i].s
-							num--
-							if(num<=0){
-								num=1
-								alert('最后一个了')
-							}
-							this.$set(this.go_arr[i], 's', num)
-						}
-					}
-				},
-				no2(uid){
-					for(var i = 0; i < this.go_arr.length; i++) {
-						if(this.go_arr[i].uid == uid) {
-							var num = this.go_arr[i].s
-							num++
-							this.$set(this.go_arr[i], 's', num)
-						}
-					}
-				},
-				insert_go(data) {
-					var type = true
-					for(var i = 0; i < this.go_arr.length; i++) {
-						if(this.go_arr[i].uid == data.uid) {
-							type = false
-							var num = this.go_arr[i].s
-							num++
-							this.$set(data, 's', num)
-						}
-					}
-					if(type) {
-						this.$set(data, 's', 1)
-						this.go_arr.push(data)
-					}
-				}
-			},
-			data: {
-				arr: [{
-						uid: 1,
-						n: '苹果',
-						t: '水果',
-						j: 4
-					},
-					{
-						uid: 2,
-						n: '香蕉',
-						t: '水果',
-						j: 6
-					},
-					{
-						uid: 3,
-						n: '西瓜	',
-						t: '水果',
-						j: 2
-					},
-					{
-						uid: 4,
-						n: '衣柜',
-						t: '家具',
-						j: 4999
-					},
-					{
-						uid: 5,
-						n: '木质衣架',
-						t: '家具',
-						j: 299
-					},
-					{
-						uid: 6,
-						n: '衬衫',
-						t: '服饰',
-						j: 9.9
-					},
-					{
-						uid: 7,
-						n: '牛仔裤',
-						t: '服饰',
-						j: 99
-					},
-					{
-						uid: 8,
-						n: '三星',
-						t: '电子产品',
-						j: 5999
-					},
-					{
-						uid: 9,
-						n: '小米',
-						t: '电子产品',
-						j: 1999
-					}
-				],
-				go_arr: []
-			}
-		})
+$.vegas('slideshow', {
+  delay:5000,
+  backgrounds:[
+     { src:'./img/nature1.jpg', fade:2000 },
+	 { src:'./img/bw1.jpg', fade:2000 },
+    { src:'./img/portrait1.jpg', fade:2000 },
+	 { src:'./img/portrait5.jpg', fade:2000 },
+    { src:'./img/portrait2.jpg', fade:2000 },
+    { src:'./img/portrait3.jpg', fade:2000 },
+	 { src:'./img/portrait4.jpg', fade:2000 },
+	   { src:'./img/forest.jpg', fade:2000 }
+	   
+  ]
+})('overlay', {
+src:'./img/overlay.png'
+});
+
 	</script>
+<!-- /Slideshow Background -->
+
+<!-- Mixitup : Grid -->
+    <script>
+		$(function(){
+    $('#Grid').mixitup();
+      });
+    </script>
+<!-- /Mixitup : Grid -->	
+
+    <!-- Custom JavaScript for Smooth Scrolling - Put in a custom JavaScript file to clean this up -->
+    <script>
+      $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+            || location.hostname == this.hostname) {
+
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+              $('html,body').animate({
+                scrollTop: target.offset().top
+              }, 1000);
+              return false;
+            }
+          }
+        });
+      });
+    </script>
+<!-- Navbar -->
+<script type="text/javascript">
+$(document).ready(function() {
+        $('#nav').scrollToFixed();
+  });
+    </script>
+<!-- /Navbar-->
+	
+  </body>
 
 </html>
