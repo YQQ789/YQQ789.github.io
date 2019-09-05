@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style>
+		/*隐藏到显示前的状态*/
+		.lee-enter{
+			left: -800px !important;
+			background: red;
+		}
+		/*隐藏到显示时的状态*/
+		.lee-enter-active{
+			transition: all 3s;
+		}
+		/*隐藏到显示后的状态*/
+		.lee-enter-to{
+			/*background: aqua;*/
+		}
+		/*隐藏到显示前的状态*/
+		.lee2-enter{
+			left:800px; !important;
+			opacity: 0;
+		}
+		.lee2-enter-active{
+			transition: all 3s;
+		}
+		.lee2-enter-to{
+			/*background: aqua;*/
+		}
+		.lee2-leave{
+			/*background: aqua;*/
+		}
+		.lee2-leave-active{
+			transition: all 3s;
+		}
+		.lee2-leave-to{
+			left:-800px !important;
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<lee style="text-align:center;"></lee>
+	</div>
+	
+	<template id="lee">
+		<div>
+			<button @click="no1">下一个</button>
+			{{type}}
+			<button @click="no2">上一个</button>
+			<div style="width:800px;margin: 0 auto;position: relative;">
+				 <transition :name="t_type" v-for="(i,$index) in arr">
+					<div style="width:800px;position: absolute;left:0;top:0;" v-show="type==$index">
+						<img :src="i" width="800px"/>
+					</div>
+				</transition>
+			</div>
+			
+			
+		</div>
+	</template>
+	
+	
+	<script src="js/vue.js"></script>
+	<script>
+		Vue.component('lee',{
+			template:'#lee',
+			methods:{
+				no1(){
+					this.t_type = 'lee'
+					this.type++
+					if(this.type >= 3){
+						this.type = 0
+					}
+				},
+				no2(){
+					this.t_type = 'lee2'
+					this.type--
+					if(this.type <= -1){
+						this.type = 2
+					}
+				}
+			},
+			data(){
+				return{
+					type:0,
+					t_type:'lee',
+					arr:[
+						'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1567647524&di=98daaad6de718f6df97fb6691df2e3d3&src=http://b-ssl.duitang.com/uploads/item/201802/15/20180215084943_sBUdy.jpeg',
+						'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567657609667&di=9f6189bebe47da2e29c40abb5df4faa2&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201710%2F13%2F20171013173456_nfhkG.jpeg',
+						'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567657609663&di=63e834f8da5cb513572b026b87f98112&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201710%2F06%2F20171006122446_zNFic.jpeg'
+					]
+				}
+			}
+		})
+		new Vue({
+			el:"#box"
+		})
+		
+		
+	</script>
+</body>
+</html>
